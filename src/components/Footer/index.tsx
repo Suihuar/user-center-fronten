@@ -3,22 +3,25 @@ import { DefaultFooter } from '@ant-design/pro-components';
 import React from 'react';
 
 const Footer: React.FC = () => {
+  const defaultMassage = '显然这是虽华做的';
+  const currentYear = new Date().getFullYear();
   return (
     <DefaultFooter
+        copyright={`${currentYear} ${defaultMassage}`}
       style={{
         background: 'none',
       }}
       links={[
-        {
-          key: 'Self',
-          title: 'Weihua SUN Sean',
-          href: 'https://pro.ant.design',
-          blankTarget: true,
-        },
+        // {
+        //   key: 'Name',
+        //   title: 'Weihua SUN',
+        //   href: '',
+        //   blankTarget: true,
+        // },
         {
           key: 'github',
-          title: <GithubOutlined />,
-          href: 'https://github.com/Suihuar/UserCenter',
+          title: <><GithubOutlined /> 虽华 Github</>,
+          href: 'https://github.com/Suihuar/user-center-frontend',
           blankTarget: true,
         },
         {

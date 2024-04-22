@@ -21,6 +21,7 @@ import { createStyles } from 'antd-style';
 import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
 import Settings from '../../../../config/defaultSettings';
+import {LOGO} from "src/constants";
 const useStyles = createStyles(({ token }) => {
   return {
     action: {
@@ -144,9 +145,9 @@ const Login: React.FC = () => {
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" src="/logo.svg" />}
-          title="Ant Design"
-          subTitle={'Ant Design 是西湖区最具影响力的 Web 设计规范'}
+          logo={<img alt="logo" src= {LOGO} />}
+          title="User Center"
+          subTitle={'学数学的菜鸡第一次开发做出来的鬼东西'}
           initialValues={{
             autoLogin: true,
           }}
