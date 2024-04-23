@@ -1,1 +1,2 @@
-export const LOGO= '/Users/suihua/Desktop/user center/frontend/node_modules/@ant-design/icons-svg/inline-svg/twotone/S1.jpg'
+export const LOGO= 'https://img.erpweb.eu.org/imgs/2024/04/eb52746c1b5be509.png'
+export const BILI='https://space.bilibili.com/99566843'

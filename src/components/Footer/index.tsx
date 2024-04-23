@@ -1,6 +1,7 @@
 import { GithubOutlined } from '@ant-design/icons';
 import { DefaultFooter } from '@ant-design/pro-components';
 import React from 'react';
+import {BILI} from "@/constants";
 
 const Footer: React.FC = () => {
   const defaultMassage = '显然这是虽华做的';
@@ -27,7 +28,7 @@ const Footer: React.FC = () => {
         {
           key: 'Bilibili',
           title: 'Bilibili',
-          href: 'https://space.bilibili.com/99566843?spm_id_from=333.1007.0.0',
+          href: BILI,
           blankTarget: true,
         },
       ]}

@@ -21,7 +21,7 @@ import { createStyles } from 'antd-style';
 import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
 import Settings from '../../../../config/defaultSettings';
-import {LOGO} from "src/constants";
+import {BILI, LOGO} from "@/constants";
 const useStyles = createStyles(({ token }) => {
   return {
     action: {
@@ -133,25 +133,19 @@ const Login: React.FC = () => {
           {'登录'}- {Settings.title}
         </title>
       </Helmet>
-      <Lang />
-      <div
-        style={{
-          flex: '1',
-          padding: '32px 0',
-        }}
-      >
+      {/*<Lang/>*/}
+      <div style={{flex: '1', padding: '32px 0',}}>
         <LoginForm
           contentStyle={{
             minWidth: 280,
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" src= {LOGO} />}
-          title="User Center"
-          subTitle={'学数学的菜鸡第一次开发做出来的鬼东西'}
+          title="虽华掌管的用户中心"
+          subTitle={<a href={'https://www.math.cuhk.edu.hk/'} target="_blank" rel="noreferrer"> 学数学的菜鸡第一次开发做出来的鬼东西 </a>}
           initialValues={{
             autoLogin: true,
           }}
-          actions={['其他登录方式 :', <ActionIcons key="icons" />]}
           onFinish={async (values) => {
             await handleSubmit(values as API.LoginParams);
           }}
@@ -165,15 +159,12 @@ const Login: React.FC = () => {
                 key: 'account',
                 label: '账户密码登录',
               },
-              {
-                key: 'mobile',
-                label: '手机号登录',
-              },
+
             ]}
           />
 
           {status === 'error' && loginType === 'account' && (
-            <LoginMessage content={'错误的用户名和密码(admin/ant.design)'} />
+            <LoginMessage content={'错误的账号和密码'} />
           )}
           {type === 'account' && (
             <>
@@ -183,21 +174,21 @@ const Login: React.FC = () => {
                   size: 'large',
                   prefix: <UserOutlined />,
                 }}
-                placeholder={'用户名: admin or user'}
+                placeholder={'请输入账号'}
                 rules={[
                   {
                     required: true,
-                    message: '用户名是必填项！',
+                    message: '账号是必填项！',
                   },
                 ]}
               />
               <ProFormText.Password
-                name="password"
+                name="userPassword"
                 fieldProps={{
                   size: 'large',
                   prefix: <LockOutlined />,
                 }}
-                placeholder={'密码: ant.design'}
+                placeholder={'请输入密码'}
                 rules={[
                   {
                     required: true,
@@ -208,61 +199,6 @@ const Login: React.FC = () => {
             </>
           )}
 
-          {status === 'error' && loginType === 'mobile' && <LoginMessage content="验证码错误" />}
-          {type === 'mobile' && (
-            <>
-              <ProFormText
-                fieldProps={{
-                  size: 'large',
-                  prefix: <MobileOutlined />,
-                }}
-                name="mobile"
-                placeholder={'请输入手机号！'}
-                rules={[
-                  {
-                    required: true,
-                    message: '手机号是必填项！',
-                  },
-                  {
-                    pattern: /^1\d{10}$/,
-                    message: '不合法的手机号！',
-                  },
-                ]}
-              />
-              <ProFormCaptcha
-                fieldProps={{
-                  size: 'large',
-                  prefix: <LockOutlined />,
-                }}
-                captchaProps={{
-                  size: 'large',
-                }}
-                placeholder={'请输入验证码！'}
-                captchaTextRender={(timing, count) => {
-                  if (timing) {
-                    return `${count} ${'秒后重新获取'}`;
-                  }
-                  return '获取验证码';
-                }}
-                name="captcha"
-                rules={[
-                  {
-                    required: true,
-                    message: '验证码是必填项！',
-                  },
-                ]}
-                onGetCaptcha={async (phone) => {
-                  const result = await getFakeCaptcha({
-                    phone,
-                  });
-                  if (!result) {
-                    return;
-                  }
-                  message.success('获取验证码成功！验证码为：1234');
-                }}
-              />
-            </>
-          )}
           <div
             style={{
               marginBottom: 24,
@@ -275,8 +211,10 @@ const Login: React.FC = () => {
               style={{
                 float: 'right',
               }}
+              href={BILI}
+              target="_blank" rel="noreferrer"
             >
-              忘记密码 ?
+              忘记密码请联系虽华!!
             </a>
           </div>
         </LoginForm>
